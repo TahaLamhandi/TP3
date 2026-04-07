@@ -16,6 +16,12 @@
 
     <h1>Inscription</h1>
 
+    <% if (request.getAttribute("errorSignup")!=null){%>
+    <p style="color: red;">
+        <%= request.getAttribute("errorSignup")%>
+    </p>
+    <%}%>
+
     <form action="register" method="post">
         <label for="nom">Nom</label>
         <input type="text" id="nom" name="nom" required>

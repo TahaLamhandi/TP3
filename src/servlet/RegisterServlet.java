@@ -31,6 +31,13 @@ public class RegisterServlet extends HttpServlet {
 
         User newUser = new User(userList.getLast().getId() + 1,nom,prenom,email,password);
 
+        for(User user : userList){
+            if(user.getEmail().equals(newUser.getEmail())){
+                request.setAttribute("errorSignup","Cet email est déjà associé à un compte");
+                request.getRequestDispatcher("register.jsp").forward(request,response);
+            }
+        }
+
         userList.add(newUser);
         HttpSession session = request.getSession();
         session.setAttribute("currentUser", newUser);
